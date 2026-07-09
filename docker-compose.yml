@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped
+
+# If you want to run a local Postgres/Supabase container for testing,
+# add a service here and wire it to the `web` service via environment
+# variables. For production, point the app to your hosted Supabase.
